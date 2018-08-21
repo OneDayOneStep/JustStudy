@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<style type="text/css">
+    hemt,body{
+        margin:0;height:100%;overflow:hidden;
+    }
+</style>
+</head>
+<body>
+
+<canvas id="newCanvas"></canvas>
+
+<script type="text/javascript" src="digit.js"></script>
+<script type="text/javascript">
+window.onload = function () {
+
+    var Canvas = document.getElementById("newCanvas");
+    Canvas.height = document.documentElement.clientHeight;
+    Canvas.width = document.documentElement.clientWidth;
+    var Canvas2D = Canvas.getContext("2d");
+    var FiveF = [0,8,16,21,29,37,42,50];
+    var PastTime = {
+        Hour : new Date().getHours(),
+        Minute : new Date().getMinutes(),
+        Seconds : new Date().getSeconds()
+    }
+    var Balls = [];
+    var BallColors = ["#33B5E5","#0099CC","#AA66CC","#9933CC","#99CC00","#669900","#FFBB33","#FF8800","#FF4444","#CC0000"];
+
+    function DrawTime(Canvas2D,Times,Radius,Spacing,MarginL,MarginT){
+        for(var i = 0;i < Times.length;i++){
+            if(Times[i]==":"){
+                var thisF = digit[digit.length-1];
+            }else{
+                var thisF = digit[Times[i]];
+            }
+            for(var ii = 0;ii < thisF.length;ii++){
+                var thisF_Row = thisF[ii];
+                for(var iii = 0;iii < thisF_Row.length;iii++){
+                    Canvas2D.beginPath();
+                    Canvas2D.fillStyle = "#0099cc";
+                    Canvas2D.arc(
+                        (Radius*2 + Spacing)*iii + MarginL + FiveF[i]*(Radius*2 + Spacing),
+                        (Radius*2 + Spacing)*ii + MarginT,
+                        Radius,
+                        0, 2*Math.PI,
+                        false
+                    );
+                    // Canvas2D.stroke();
+                    if(thisF_Row[iii]==1){
+                        Canvas2D.fill();
+                    }
+                    Canvas2D.closePath();
+                }
+            }
+        }
+    }
+
+    function TimeChange(Canvas2D){
+        var CDate = new Date();
+        var CHour = CDate.getHours();
+        var CMinute = CDate.getMinutes();
+        var CSeconds = CDate.getSeconds();
+        var AnimateNum = [];
+        if( CSeconds != PastTime.Seconds ){
+            AnimateNum[7] = CSeconds%10;
+            if(parseInt(CSeconds/10) != parseInt(PastTime.Seconds/10)){
+                AnimateNum[6] = parseInt(CSeconds/10);
+            }
+            if( CMinute != PastTime.Minute ){
+                AnimateNum[4] = CMinute%10;
+                if(parseInt(CMinute/10) != parseInt(PastTime.Minute/10)){
+                    AnimateNum[3] = parseInt(CMinute/10);
+                }
+                if( CHour != PastTime.Hour ){
+                    AnimateNum[1] = CHour%10;
+                    if(parseInt(CHour/10) != parseInt(PastTime.Hour/10)){
+                        AnimateNum[0] = parseInt(CHour/10);
+                    }
+                }
+            }
+            PastTime.Seconds = CSeconds;
+            PastTime.Minute = CMinute;
+            PastTime.Hour = CHour;
+        }
+        CreatBalls(AnimateNum,7,5,270,170);
+        DrawBalls(Canvas2D,Balls);
+    }
+
+    function CreatBalls(AnimateNum,Radius,Spacing,MarginL,MarginT){
+        for(var i = 0;i < AnimateNum.length;i++){
+            if(AnimateNum[i]!=undefined){
+                var CNum = digit[AnimateNum[i]];
+                for(var ii = 0;ii < CNum.length;ii++){
+                    var CNumRow = CNum[ii];
+                    for(var iii = 0;iii < CNumRow.length;iii++){
+                        if(CNumRow[iii]==1){
+                            Balls.push({
+                                x : (Radius*2 + Spacing)*iii + MarginL + FiveF[i]*(Radius*2 + Spacing),
+                                vx : Math.max(Math.floor(Math.random()*15) , 2 ) * (Math.random() > 0.5 ? 1 : -1),
+                                y : (Radius*2 + Spacing)*ii + MarginT,
+                                vy : 0,
+                                r : Radius,
+                                g : Math.max(Math.floor(Math.random()*3) , 1 ),
+                                vg : Math.random().toFixed(1),
+                                color : BallColors[Math.floor( Math.random()*BallColors.length )]
+                            });
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    function DrawBalls(Canv,Balls){
+        var Balls = Balls;
+        for(var i = 0;i < Balls.length;i++){
+            if( Balls[i].x < 0 || Balls[i].x > Canv.canvas.width ){
+                Balls.splice(i,1);
+                continue;
+            }
+            if( Balls[i].y + Balls[i].r >= Canv.canvas.height ){
+                Balls[i].y = Canv.canvas.height - Balls[i].r;
+                Balls[i].vy = - Balls[i].vy * Balls[i].vg;
+            }
+            Canv.beginPath();
+            Canv.fillStyle = Balls[i].color;
+            Canv.arc(
+                Balls[i].x,
+                Balls[i].y,
+                Balls[i].r,
+                0, 2*Math.PI
+            );
+            Canv.fill();
+            Canv.closePath();
+
+            Balls[i].x += Balls[i].vx;
+            Balls[i].y += Balls[i].vy;
+            Balls[i].vy += Balls[i].g;
+
+        }
+    }
+
+    setInterval(function(){
+        var Hour = new Date().getHours().toString();
+        var Minute = new Date().getMinutes().toString();
+        var Seconds = new Date().getSeconds().toString();
+        if(Hour.length==1){Hour = "0" + Hour};
+        if(Minute.length==1){Minute = "0" + Minute};
+        if(Seconds.length==1){Seconds = "0" + Seconds};
+        var Times = Hour +":"+ Minute +":"+ Seconds;
+        Canvas2D.clearRect(0,0,Canvas2D.canvas.width,Canvas2D.canvas.height);
+        TimeChange(Canvas2D);
+        DrawTime(Canvas2D,Times,7,5,270,170);
+    },16);
+
+}//onload
+</script>
+
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<style type="text/css">
+	html,body{
+		margin:0;padding:0;height:100%;width:100%;overflow:hidden;
+	}
+	#fourcon{
+		height:100%;width:100%;position:relative;
+		background:url("40.png");background-repeat:repeat;
+		background-color:#F6F6F6;
+	}
+	#four{
+		height:170px;width:420px;position:absolute;
+		left:50%;margin-left:-210px;overflow:hidden;
+		background:url("404.png");background-repeat:no-repeat;
+		top:150px;
+	}
+	#fourtit{
+		height:75px;width:850px;position:absolute;
+		left:50%;margin-left:-425px;overflow:hidden;
+		background:url("4044.png");background-repeat:no-repeat;
+		bottom:100px;
+	}
+	#fourtime{
+		height:75px;width:30px;margin-left:325px;
+		background:url("40444.png");background-repeat:no-repeat;
+		float:left;
+	}
+	#fourreturn{
+		height:25px;width:90px;cursor:pointer;float:left;
+		margin:45px 0 0 80px;
+	}
+</style>
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+	function historyreturn(){
+		window.history.back();
+	}
+	function timeoutreturn(){
+		if(timeout<9){
+			document.getElementById("fourtime").style.background = "url('40444.png') -"+30*timeout+++"px 0";
+			setTimeout("timeoutreturn()",1000)
+		}else{
+			historyreturn();
+		}
+	}
+	var timeout = 0;
+	window.onload=function(){
+		timeoutreturn();
+	}
+</script>
+</head>
+<body>
+	<div id="fourcon">
+		<div id="four"></div>
+		<div id="fourtit">
+			<div id="fourtime"></div><div id="fourreturn" onclick="historyreturn();"></div>
+		</div>
+	</div>
+</body>
+</html>

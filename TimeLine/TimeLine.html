@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>时间轴</title>
+
+<style type="text/css">
+	#timeaxis *{
+		font-family:微软雅黑 Microsoft Yahei;
+	}
+	#timeaxis{
+		margin:0;
+		padding:0;
+	}
+	#timeaxis li{
+		display:block;
+		list-style-type:none;
+		width:100%;
+		min-height:64px;
+		background:url("timeline.png");
+		background-repeat:no-repeat;
+		background-repeat:repeat-y;
+		padding-bottom:30px;
+		overflow:hidden;
+	}
+	#timeaxis li>div{
+		float:left;
+	}
+	.left{
+		width:115px;
+	}
+	.year{
+		text-align:right;
+		color:#BBB;
+		font-size:14px;
+	}
+	.date{
+		text-align:right;
+		font-size:24px;
+		font-weight:600;
+		color:#0099ff;
+	}
+	.mid{
+		width:25px;
+		height:100px;
+		background:url("timeline.png");
+		background-repeat:repeat-y;
+		margin:0 10px;
+		position:relative;
+	}
+
+	.right{
+		min-width:200px;
+		position:relative;
+		padding:10px 0 0 12px;
+	}
+	.qipao{
+		display:none;
+		position:absolute;
+		height:0;
+		width:0;
+		left:0;
+		top:25px;
+		border-top:10px solid transparent;
+		border-right:12px solid #0099ff;
+		border-bottom:10px solid transparent;
+	}
+	.main{
+		background-color:#0099ff;
+		border-radius:10px;
+		float:left;
+		transition:all 1s;
+	}
+
+	.title{
+		color:#FFF;
+		margin:0 10px;
+		padding:5px 0px;
+		border-bottom:1px solid;
+		border-color:#0099ff;
+		font-size:14px;
+		cursor:pointer;
+	}
+	.news{
+		color:#FFF;
+		margin:0 10px;
+		padding:5px 0px;
+		font-size:12px;
+		display:none;
+		opacity:0;
+	}
+</style>
+<script type="text/javascript" src="../jquery-3.1.1.min.js"></script>
+</head>
+<body>
+ <div id="content">
+ 	<div id="top"></div>
+ 	<ul id="timeaxis">
+ 		<li>
+ 			<div class="left">
+ 			<div class="year">2016年</div>
+ 			<div class="date">10月24日</div>
+ 			</div>
+ 			<div class="mid">
+ 				<a class="clock"></a>
+ 			</div>
+ 			<div class="right">
+ 				<span class="qipao"></span>
+ 				<div class="main"><div class="title">周星驰、徐克：联手打造《西游伏妖篇》</div>
+				<div class="news">
+ 				电影《西游伏妖篇》作为2013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“2017年春节档令人期待！”电影《西游伏妖篇》作为2013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“2017年春节档令人期待！”</div></div>
+ 			</div>
+ 		</li>
+
+
+ 		 		<li>
+ 			<div class="left">
+ 			<div class="year">2016年</div>
+ 			<div class="date">10月24日</div>
+ 			</div>
+ 			<div class="mid">
+ 				<a class="clock"></a>
+ 			</div>
+ 			<div class="right">
+ 				<span class="qipao"></span>
+ 				<div class="main"><div class="title">周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》</div>
+				<div class="news">
+ 				电影《西游伏妖篇》作为2013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏的</div></div>
+ 			</div>
+ 		</li>
+
+<ul id="timeaxis">
+ 		<li>
+ 			<div class="left">
+ 			<div class="year">2016年</div>
+ 			<div class="date">10月24日</div>
+ 			</div>
+ 			<div class="mid">
+ 				<a class="clock"></a>
+ 			</div>
+ 			<div class="right">
+ 				<span class="qipao"></span>
+ 				<div class="main"><div class="title">周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》</div>
+				<div class="news">
+ 				电影《西游伏妖篇》作为2013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“2017年2013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“202013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“202013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“20春节档令人期待！”</div></div>
+ 			</div>
+ 		</li>
+
+
+ 		 		<li>
+ 			<div class="left">
+ 			<div class="year">2016年</div>
+ 			<div class="date">10月24日</div>
+ 			</div>
+ 			<div class="mid">
+ 				<a class="clock"></a>
+ 			</div>
+ 			<div class="right">
+ 				<span class="qipao"></span>
+ 				<div class="main"><div class="title">周星驰、徐克：联手打造《西游伏妖篇》</div>
+				<div class="news">
+ 				电影《西游伏妖篇》作为2013年周星驰导演电影《西游·降魔篇</div></div>
+ 			</div>
+ 		</li>
+ 		<li>
+ 			<div class="left">
+ 			<div class="year">2016年</div>
+ 			<div class="date">10月24日</div>
+ 			</div>
+ 			<div class="mid">
+ 				<a class="clock"></a>
+ 			</div>
+ 			<div class="right">
+ 				<span class="qipao"></span>
+ 				<div class="main"><div class="title">周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》</div>
+				<div class="news">
+ 				电影《西游伏妖篇》作为2013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“2017年2013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“202013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“202013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“20春节档令人期待！”</div></div>
+ 			</div>
+ 		</li>
+
+
+ 		 		<li>
+ 			<div class="left">
+ 			<div class="year">2016年</div>
+ 			<div class="date">10月24日</div>
+ 			</div>
+ 			<div class="mid">
+ 				<a class="clock"></a>
+ 			</div>
+ 			<div class="right">
+ 				<span class="qipao"></span>
+ 				<div class="main"><div class="title">周星驰、徐克：联手打造《西游伏妖篇》</div>
+				<div class="news">
+ 				电影《西游伏妖篇》作为2013年周星驰导演电影《西游·降魔篇</div></div>
+ 			</div>
+ 		</li>
+ 		<li>
+ 			<div class="left">
+ 			<div class="year">2016年</div>
+ 			<div class="date">10月24日</div>
+ 			</div>
+ 			<div class="mid">
+ 				<a class="clock"></a>
+ 			</div>
+ 			<div class="right">
+ 				<span class="qipao"></span>
+ 				<div class="main"><div class="title">周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》周星驰、徐克：联手打造《西游伏妖篇》</div>
+				<div class="news">
+ 				电影《西游伏妖篇》作为2013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“2017年2013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“202013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“202013年周星驰导演电影《西游·降魔篇》的后继故事，讲述了唐三藏在上集感化了杀死段小姐的齐天大圣，并收其为徒后，与孙悟空、猪八戒及沙僧，师徒一行四人踏上西天取经之旅。路途凶险，除魔伏妖，师徒四人也在取经的过程中有了各自的成长与改变。四年前的《西游·降魔篇》曾在内地斩获12.46亿的高票房，称霸当年春节。此番《西游伏妖篇》作为周星驰西游故事的正式续作，众多影迷纷纷欣喜表示：“20春节档令人期待！”</div></div>
+ 			</div>
+ 		</li>
+
+
+ 		 		<li>
+ 			<div class="left">
+ 			<div class="year">2016年</div>
+ 			<div class="date">10月24日</div>
+ 			</div>
+ 			<div class="mid">
+ 				<a class="clock"></a>
+ 			</div>
+ 			<div class="right">
+ 				<span class="qipao"></span>
+ 				<div class="main"><div class="title">周星驰、徐克：联手打造《西游伏妖篇》</div>
+				<div class="news">
+ 				电影《西游伏妖篇》作为2013年周星驰导演电影《西游·降魔篇</div></div>
+ 			</div>
+ 		</li>
+ 	</ul>
+ </div>
+<script type="text/javascript">
+	$(function(){
+		$(".right").css("width",$(window).width()-225+"px");
+	})
+	$(window).resize(function(){
+		$(".right").css("width",$(window).width()-225+"px");
+	})
+
+
+	$(".title").click(function(){
+		$(this).css({"cursor":"default","border-color":"#FFF"});
+		$(this).parent(".main").css("box-shadow","#808080 2px 2px 6px");
+		$(this).parent(".main").prev().css("display","block");
+		$(this).next().css("display","block");
+		$(this).next().animate({opacity:"1"},500);
+	})
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<style type="text/css">
+	#loadingbg{
+		position:fixed;
+		top:0;left:0;right:0;bottom:0;
+		background:#58A9FA;z-index:99999;
+	}
+	#loadingnow{
+		position:absolute;
+		height:160px;width:100%;
+		left:0;top:50%;right:0;
+		margin-top:-80px;
+	}
+	#loadingnow>span{
+		display:block;height:75px;width:220px;
+		background:url("loadingnow.png");
+		position:absolute;left:50%;margin-left:-110px;bottom:0;
+	}
+	#loadingnow>div{
+		height:35px;width:35px;background:#FFF;background-color:#FFF;
+		position:absolute;left:-40px;
+		border-radius:50%;-moz-border-radius:50%;-webkit-border-radius:50%;-o-border-radius:50%;
+		animation:onmove 3s linear infinite;
+		-moz-animation:onmove 3s linear infinite;
+		-webkit-animation:onmove 3s linear infinite;
+		-o-animation:onmove 3s linear infinite;
+		-ms-animation:onmove 3s linear infinite;
+	}
+	#loadingnow>div:nth-child(1){
+		animation-delay:0;
+		-moz-animation-delay:0;-webkit-animation-delay:0;
+	}
+	#loadingnow>div:nth-child(2){
+		margin-left:-35px;
+		animation-delay:.15s;
+		-moz-animation-delay:.15s;-webkit-animation-delay:.15s;
+	}
+	#loadingnow>div:nth-child(3){
+		margin-left:-70px;
+		animation-delay:.3s;
+		-moz-animation-delay:.3s;-webkit-animation-delay:.3s;
+	}
+	#loadingnow>div:nth-child(4){
+		margin-left:-105px;
+		animation-delay:.45s;
+		-webkit-animation-delay:.45s;-moz-animation-delay:.45s;
+	}
+	@keyframes onmove{
+		0%{
+			left:-40px;
+			animation-timing-function:ease-out;
+			-moz-animation-timing-function:ease-out;
+			-webkit-animation-timing-function:ease-out;
+			-o-animation-timing-function:ease-out;
+		}
+		20%{
+			left:47%;
+		}
+		60%{
+			left:57%;
+			animation-timing-function:ease;
+			-moz-animation-timing-function:ease;
+			-webkit-animation-timing-function:ease;
+			-o-animation-timing-function:ease;
+		}
+		80%{
+			left:120%;
+		}
+		100%{
+			left:120%;
+		}
+	}
+	@-moz-keyframes onmove{
+		0%{
+			left:-40px;
+			animation-timing-function:ease-out;
+			-moz-animation-timing-function:ease-out;
+			-webkit-animation-timing-function:ease-out;
+			-o-animation-timing-function:ease-out;
+		}
+		20%{
+			left:47%;
+		}
+		60%{
+			left:57%;
+			animation-timing-function:ease;
+			-moz-animation-timing-function:ease;
+			-webkit-animation-timing-function:ease;
+			-o-animation-timing-function:ease;
+		}
+		80%{
+			left:120%;
+		}
+		100%{
+			left:120%;
+		}
+	}
+	@-webkit-keyframes onmove{
+		0%{
+			left:-40px;
+			animation-timing-function:ease-out;
+			-moz-animation-timing-function:ease-out;
+			-webkit-animation-timing-function:ease-out;
+			-o-animation-timing-function:ease-out;
+		}
+		20%{
+			left:47%;
+		}
+		60%{
+			left:57%;
+			animation-timing-function:ease;
+			-moz-animation-timing-function:ease;
+			-webkit-animation-timing-function:ease;
+			-o-animation-timing-function:ease;
+		}
+		80%{
+			left:120%;
+		}
+		100%{
+			left:120%;
+		}
+	}
+	@-o-keyframes onmove{
+		0%{
+			left:-40px;
+			animation-timing-function:ease-out;
+			-moz-animation-timing-function:ease-out;
+			-webkit-animation-timing-function:ease-out;
+			-o-animation-timing-function:ease-out;
+		}
+		20%{
+			left:47%;
+		}
+		60%{
+			left:57%;
+			animation-timing-function:ease;
+			-moz-animation-timing-function:ease;
+			-webkit-animation-timing-function:ease;
+			-o-animation-timing-function:ease;
+		}
+		80%{
+			left:120%;
+		}
+		100%{
+			left:120%;
+		}
+	}
+</style>
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<div id="loadingbg">
+	<div id="loadingnow">
+		<div></div><div></div><div></div><div></div>
+		<span></span>
+	</div>
+</div>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<style type="text/css">
+	html,body{height:100%;width:100%;overflow:hidden;margin:0;padding:0;}
+	#errorcon{
+		height:100%;width:100%;background:#F5F5F5;position:relative;
+	}
+	#errortitle{
+		height:225px;width:425px;position:absolute;
+		background:url("errortitle.png") 0 0;background-position:0 0;
+		left:50%;top:100px;overflow:hidden;
+		box-sizing:border-box;padding-top:185px;
+	}
+	#errorman{
+		background:url('errorman.png');height:440px;width:370px;position:absolute;bottom:60px;left:100px;z-index:10;overflow: hidden;
+	}
+	#errortime{
+		height:30px;width:30px;background:url('errortitle.png') 0 300px;margin-left:5px;float:left;
+	}
+	#historyreturn{
+		height:38px;width:238px;float:right;cursor:pointer;
+	}
+	#errorbottom{
+		position:absolute;height:100px;width:100%;bottom:0;background:#B5B5B5;z-index:5;
+	}
+</style>
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+	function historyreturn(){
+		window.history.back();
+	}
+	function timeoutreturn(){
+		if(timeout<9){
+			document.getElementById("errortime").style.background = "url('errortitle.png') -"+30*timeout+++"px 300px";
+			setTimeout("timeoutreturn()",1000)
+		}else{
+			historyreturn();
+		}
+	}
+	var timeout = 0;
+	window.onload=function(){
+		timeoutreturn();
+	}
+</script>
+</head>
+<body>
+<div id="errorcon">
+	<div id="errortitle"><div id="errortime"></div><div id="historyreturn" onclick="historyreturn();"></div></div>
+	<div id="errorman"></div>
+	<div id="errorbottom"></div>
+</div>
+</body>
+</html>

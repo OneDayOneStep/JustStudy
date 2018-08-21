@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<style type="text/css">
+    html,body{
+        height:100%;margin:0;
+    }
+    #Busy{
+        height:100%;overflow:hidden;position:relative;
+        background:#F5F5F5;
+    }
+    #Busy *{overflow:hidden}
+    #BusyBG{
+        background:url("Busy.png");
+        background-repeat:no-repeat;
+        height:400px;position:absolute;width:400px;
+        bottom:30px;left:10%;z-index:3;
+    }
+    #BusyBGColor{
+        position:absolute;bottom:0;
+        left:0;right:0;height:100px;
+        background:#CCC;z-index:1;
+    }
+    #BusyFont{
+        line-height:130px;z-index:5;
+        font-size:28px;font-weight:600;
+    }
+    #BusyFont{
+        background:url("BusyFont.png");
+        height:220px;width:480px;left:45%;
+        position:absolute;top:15%;
+    }
+</style>
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+<div id="Busy">
+    <div id="BusyBG"></div>
+    <div id="BusyBGColor"></div>
+    <div id="BusyFont"></div>
+</div>
+</body>
+</html>

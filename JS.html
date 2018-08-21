@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<style type="text/css">
+    #Yes,#No{
+        height:60px;width:150px;
+    }
+    #Yes{
+        position:relative;z-index:5;
+        transform:scale3d(1,1,1);
+    }
+</style>
+</head>
+<body>
+<div style="font-size:30px;text-align:center;line-height:100px">
+    JavaScript是不是最好的语言
+</div>
+<div style="text-align:center">
+    <button id="Yes" onclick="alert('能赚钱都是好语言')">是</button>
+    <button id="No" onclick="alert('手速可以的')" onmousemove="MMoovvee(this)">不是</button>
+</div>
+<script type="text/javascript">
+    function MMoovvee(e){
+        e.removeAttribute("onmousemove");
+        for(var i = 1;i <= 20;i++){
+            setTimeout(function(){Move(e)},100*i);
+        }
+        setTimeout(function(){e.setAttribute("onmousemove","MMoovvee(this)")},2050)
+    }
+    function Move(e){
+        var MoveTop = document.documentElement.clientHeight - 60;
+        var MoveLeft = document.documentElement.clientWidth - 150;
+        MoveTop = (Math.random()*MoveTop).toFixed(2);
+        MoveLeft = (Math.random()*MoveLeft).toFixed(2);
+        e.style.position = "fixed";
+        e.style.top = MoveTop + "px";
+        e.style.left = MoveLeft + "px";
+    }
+</script>
+</body>
+</html>

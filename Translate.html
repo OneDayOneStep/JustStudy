@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<style type="text/css">
+	html,body{
+		height:100%;
+		padding:0;
+		margin:0;
+		overflow:hidden;
+	}
+	.st-scroll,
+	.st-panel{
+		width:100%;
+		height:100%;
+		position:relative;
+		transform:translate3d(0,0,0);
+		-webkit-transform:translate3d(0,0,0);
+		-webkit-background-visibility:hidden;
+	}
+	.st-scroll{
+		left:0;
+		top:0;
+	}
+	.st-panel{
+		background:#FFF;
+		overflow:hidden;
+	}
+	div.st-scroll{
+		text-align:center;
+		font-size:100px;
+	}
+	#con{
+		height:100%;
+		width:100%;
+	}
+	#con>a,#con>input{
+		display:block;
+		height:25px;
+		width:25px;
+		border-radius:50%;
+		border:#000 2px solid;
+		line-height:25px;
+		text-align:center;
+		font-weight:600;
+		color:#000;
+		cursor:pointer;
+		overflow:hidden;
+		position:absolute;
+		text-decoration:none;
+		right:50px;
+		z-index:99998;
+		top:25%;
+	}
+	#con input{
+		margin:0;
+		z-index:99999;
+		height:29px;
+		width:29px;
+		opacity:0;
+	}
+	#con .ch1{
+		
+	}
+	#con .ch2{
+		margin-top:60px;
+	}
+	#con .ch3{
+		margin-top:120px;
+	}
+	#con .ch4{
+		margin-top:180px;
+	}
+	#con .ch5{
+		margin-top:240px;
+	}
+	.st-scroll{
+		transition:all 0.8s ease-in-out;
+	}
+	#con input.ch:checked + a{
+		border-color:red;
+		color:red;
+	}
+	#con input.ch1:checked ~ .st-scroll{
+		transform:translateY(0);
+	}
+	#con input.ch2:checked ~ .st-scroll{
+		transform:translateY(-100%);
+	}
+	#con input.ch3:checked ~ .st-scroll{
+		transform:translateY(-200%);
+	}
+	#con input.ch4:checked ~ .st-scroll{
+		transform:translateY(-300%);
+	}
+	#con input.ch5:checked ~ .st-scroll{
+		transform:translateY(-400%);
+	}
+
+</style>
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+
+<div id="con">
+	<input id="ch1" class="ch1 ch" type="radio" checked="" name="raidoa"></input><a class="ch1" id="tts" href="#ch1">1</a>
+	<input id="ch2" class="ch2 ch" type="radio" name="raidoa"></input><a class="ch2" href="#ch2">2</a>
+	<input id="ch3" class="ch3 ch" type="radio" name="raidoa"></input><a class="ch3" href="#ch3">3</a>
+	<input id="ch4" class="ch4 ch" type="radio" name="raidoa"></input><a class="ch4" href="#ch4">4</a>
+	<input id="ch5" class="ch5 ch" type="radio" name="raidoa"></input><a class="ch5" href="#ch5">5</a>
+
+
+<div class="st-scroll">
+	<section class="st-panel" id="st-panel-1" style="background:#ccc;">
+		<div class="st-desc" date-icon="A"></div>
+		<h2>1</h2>
+		<p></p>
+	</section>
+	<section class="st-panel st-color" id="st-panel-2">
+		<div class="st-desc" date-icon="A"></div>
+		<h2>2</h2>
+		<p></p>
+	</section>
+	<section class="st-panel st-color" id="st-panel-3" style="background:#ccc;">
+		<div class="st-desc" date-icon="A"></div>
+		<h2>3</h2>
+		<p></p>
+	</section>
+	<section class="st-panel st-color" id="st-panel-4">
+		<div class="st-desc" date-icon="A"></div>
+		<h2>4</h2>
+		<p></p>
+	</section>
+	<section class="st-panel st-color" id="st-panel-5" style="background:#ccc;">
+		<div class="st-desc" date-icon="A"></div>
+		<h2>5</h2>
+		<p></p>
+	</section>
+</div>
+</div>
+
+</body>
+</html>

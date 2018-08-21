@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>测试</title>
+
+<style type="text/css">
+body{height:2000px;		background-color:#ccc;}
+	.new{
+		height:30px;
+		width:30px;
+		background-color:red;
+		float:left;
+
+	}
+	.new2{
+		height:20px;
+		width:20px;
+		background-color:green;
+	}
+	.dom31{
+		height:30px;
+		width:200px;
+		background-color:#99cccc;
+	}
+	#csss{height:100px;width:100px;
+	box-shadow:0 0 10px 20px #ccc,0 0 10px 10px red;
+	}
+	#testDiv2{
+		display:block;
+		height:100px;
+		width:100px;
+		background-color:red;
+		position:fixed;
+	}
+	@media only screen and (max-width: 1400px) {
+		body{background:red;}
+	}
+
+  .f {
+            border: solid 1px red;
+            width: 100px;
+            height: 100px;
+            position: relative;
+            background-color: transparent;
+        }
+
+            .f:before {
+                position: absolute;
+                top: 0px;
+                right: 0;
+                left: 0;
+                bottom: 0;
+                border-bottom: 100px solid red;
+                border-right: 100px solid transparent;
+                content: "";
+            }
+
+            .f:after {
+                position: absolute;
+                left: 0;
+                right: 1px;
+                top: 1px;
+                bottom: 0;
+                border-bottom: 99px solid white;
+                border-right: 99px solid transparent;
+                content: "";
+            }
+
+#bor{
+	height:0;
+	width:0;
+	border-top:blue 50px solid;
+	border-bottom:blue 50px solid;
+	border-left:red 50px solid;
+	border-right:red 50px solid;
+}
+</style>
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+</head>
+<body onmousemove="window.status = 'X=' + window.event.x + ' Y=' + window.event.y">
+
+<div id="testDiv2"></div>
+
+鼠标X轴: 
+<input id=xxx type=text> 
+鼠标Y轴: 
+<input id=yyy type=text> 
+
+
+
+<button id="dom22">dom22添加</button>
+<button id="dom31end">dom31end</button>
+<button id="dom31to">dom31to</button>
+<button id="dom32af">dom32af</button>
+<button id="dom32bf">dom32bf</button>
+<button id="dom33en">dom33en</button>
+<button id="dom33to">dom33to</button>
+<button id="dom41">emptybutton</button>
+<button id="dom42">removebutton</button>
+<button id="dom441">detach</button>
+<button id="dom442">detachapp</button>
+<button id="dom443">detachre</button>
+<button id="dom445">re+</button>
+<button id="dom51">dom51</button>
+<button id="dom52">dom52</button>
+<div class="dom31"><div id="dom31">dom31</div></div>
+<div class="dom32"><div id="dom32">dom32</div></div>
+<div class="dom33"><div id="dom33">dom33</div></div>
+<div id="dom444">dom44</div>
+<input type="radio" name="ssa1" checked />
+<input type="radio" name="ssa1" />
+<div id="csss"></div>
+
+<a id="e1">e11</a>
+<a id="e2" href="www.baidu.com">e22</a>
+<a id="e3">e33</a>
+<div id="bor"></div>
+<script type="text/javascript">
+
+document.write(Number(8.5).toFixed(2));
+
+
+function cancelLink() { 
+if (window.event.srcElement.tagName == "A" && window.event.shiftKey) 
+window.event.returnValue = false; 
+} 
+
+function mouseMove(ev) 
+{ 
+var mousePos = mouseCoords(ev); 
+document.getElementById("xxx").value = mousePos.x; 
+document.getElementById("yyy").value = mousePos.y; 
+$("#testDiv2").css("left",mousePos.x);
+ $("#testDiv2").css("top",mousePos.y);
+} 
+function mouseCoords(ev) 
+{ 
+if(ev.pageX || ev.pageY){ 
+return {x:ev.clientX + document.body.scrollLeft - document.body.clientLeft, 
+y:ev.clientY + document.body.scrollTop - document.body.clientTop }; 
+} 
+return{ 
+x:ev.clientX + document.body.scrollLeft - document.body.clientLeft, 
+y:ev.clientY + document.body.scrollTop - document.body.clientTop 
+}; 
+} 
+document.onmousemove = mouseMove; 
+
+
+$("#e1").dblclick(function(event){
+    alert(event.type); //获取时间类型
+    return false; //阻止链接跳转
+})
+
+$("#e2").click(function(event){
+    alert(event.target.href); //获取触发事件的<a>元素的href属性值
+    alert(event.target.tagName); //获取触发事件的元素的标签名称
+    return false; //阻止链接跳转
+})
+
+$(function() {
+    $("#e3").click(function(e) {
+        alert("Current mouse position:" + e.pageX + "," + e.pageY);
+        //获取鼠标当前相对于页面的坐标
+        return false; //阻止链接跳转
+    });
+})
+
+// $(function() {
+//     $("body").mousedown(function(e) {
+//         alert(e.which); //1 = 鼠标左键；2 = 鼠标中键；3 = 鼠标右键。
+//     })
+// })
+
+
+
+/*JQ DOM 2-1*/
+	// var body = document.querySelector('body');
+	// document.addEventListener('click',function(){
+	// var new1 = document.createElement('div')
+	// var new2 = document.createElement("div");
+	// new1.setAttribute('class','new2')
+	// new2.className = 'new'
+	// new1.innerHTML = "新";
+	// new2.appendChild(new1)
+	// body.appendChild(new2)
+	// },true)
+/*JQ DOM 2-2*/
+// 	var $body = $("body");
+// 	$("#dom22").on('click',function(){
+// 	var dom22 = $("<div class='new2'>dom22</div>")
+// 	$("body").append(dom22)
+// })
+/*JQ DOM 3-1*/
+	// $("#dom31end").click(function(){
+	// 	$(".dom31").append("<div class='new2'>dom31+</div>");
+	// })
+	// $("#dom31to").click(function(){
+	// 	$("<div class='new2'>dom31+</div>").appendTo($(".dom31"));
+	// })
+/*JQ DOM 3-3*/
+	// $("#dom33en").click(function(){
+	// 	$("#dom33").prepend("<div class='new2'>dom33</div>");
+	// })
+	// $("#dom33to").click(function(){
+	// 	$("<div class='new2'>dom33</div>").prependTo($("#dom33"));
+	// })
+/*JQ DOM 3-2*/
+	// $("#dom32bf").click(function(){
+	// 	$("#dom32").before("<div class='new2'>dom32</div>","<div class='new'>dom32</div>");
+	// })
+	// $("#dom32af").click(function(){
+	// 	$("#dom32").after("<div class='new2'>dom32</div>","<div class='new'>dom32</div>");
+	// })
+/*JQ DOM 4-1*/
+// $("#dom41").click(function(){
+// 	$("button").empty();
+// })
+/*JQ DOM 4-2*/
+// $("#dom42").click(function(){
+// 	$("button").remove();
+// })
+
+var dom444 = $("#dom444");
+$("#dom441").click(function(){
+	dom444.detach()
+})
+$("#dom443").click(function(){
+	$("#dom444").remove();
+})
+$("#dom442").click(function(){
+	$(dom444).appendTo($("body"));
+})
+$("#dom445").click(function(){
+	$("<div id='dom444'>dom444</div>").appendTo($("body"));
+})
+$("#dom444").click(function(){
+	alert("dom444");
+})
+$("#dom51").click(function(){
+	$("body").append($(this).clone());
+})
+$("#dom52").click(function(){
+	$("body").append($(this).clone(true));
+})
+
+</script>
+</body>
+</html>

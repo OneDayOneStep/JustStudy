@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<style type="text/css">
+    .PicList{
+        padding:5px;
+        background:#EEE;
+        margin:5px 0 50px;
+        height:100px;
+    }
+    .PicList img{
+        height:100px;margin-right:5px;
+    }
+</style>
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript">
+    function GetPicFile(e) {
+        var FilesList = [];
+        if(e.files) {
+            var Files = e.files;
+            if (window.createObjectURL != undefined || window.URL != undefined || window.webkitURL != undefined) {
+                for(var i = 0; i < Files.length; i++) {
+                    console.log(Files[i]);
+                    var Urrl = null;
+                    if (window.createObjectURL != undefined) {
+                        Urrl = window.createObjectURL(Files[i]);
+                    } else if (window.URL != undefined) {
+                        Urrl = window.URL.createObjectURL(Files[i]);
+                    } else if (window.webkitURL != undefined) {
+                        Urrl = window.webkitURL.createObjectURL(Files[i]);
+                    }
+                    FilesList.push(Urrl);
+                }
+            }else{
+                for (var i = 0; i < Files.length; i++) {
+                    var FileFM = new FileReader();
+                    FileFM.readAsDataURL(Files[i]);
+                    FileFM.onload = function () {
+                        FilesList.push(this.result);
+                    };
+                }
+            }
+        }else{
+            FilesList.push(e.value);
+        }
+        if(FilesList.length > 0){
+            $(e).next().empty();
+            for(var i = 0;i < FilesList.length;i++){
+                $(e).next().append("<img src='"+ FilesList[i] +"' />");
+            }
+            return FilesList;
+        }else{
+            return null;
+        }
+    }
+</script>
+</head>
+<body>
+
+<input type="file" id="FilesA" multiple onchange="GetPicFile(this)" />
+<div class="PicList">
+
+</div>
+
+<input type="file" id="FilesB" multiple onchange="GetPicFile(this)" />
+<div class="PicList">
+
+</div>
+
+<input type="file" id="FilesC" multiple onchange="GetPicFile(this)" />
+<div class="PicList">
+
+</div>
+
+</body>
+</html>

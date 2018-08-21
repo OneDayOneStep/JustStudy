@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<style type="text/css">
+
+</style>
+<!-- <script type="text/javascript" src="jquery-3.1.1.min.js"></script> -->
+<script type="text/javascript">
+
+    	function inspectFileSize(event){
+			var event = event.srcElement || event.target;
+			if (!!window.ActiveXObject || "ActiveXObject" in window){
+				// console.log("IE");
+				var FileObject = new ActiveXObject("Scripting.FileSystemObject");
+		        var UpFile = FileObject.GetFile(event.value);
+		        var FileSize = UpFile.Size;
+		        var FileName = UpFile.Name;
+		        var FileType = FileName.split(".").pop();
+		        // console.log(FileSize,FileName,FileType);
+		        // isPic
+		        if(FileType.toUpperCase()=="PNG"||FileType.toUpperCase().indexOf("JPG")>-1){
+			    	// FileSize
+			        if(FileSize>4194500){
+			        	alert("文件大小不能超过4MB");
+			        	event.value = "";
+			        	return false;
+			        }
+		    	}else{
+		    		alert("请选择 jpg/png 格式的图像文件");
+		    		event.value = "";
+		    		return false;
+		    	}
+        	}else{
+        		// console.log("xIE");
+        		var FileSize = event.files[0].size;
+        		var FileName = event.files[0].name;
+        		var FileType = FileName.split(".").pop();
+		        // console.log(FileSize,FileName,FileType);
+		        // isPic
+		        if(FileType.toUpperCase()=="PNG"||FileType.toUpperCase().indexOf("JPG")>-1){
+			    	// FileSize
+			        if(FileSize>4194500){
+			        	alert("文件大小不能超过4MB");
+			        	event.value = "";
+			        	return false;
+			        }
+		    	}else{
+		    		alert("请选择 jpg/png 格式的图像文件");
+		    		event.value = "";
+		    		return false;
+		    	}
+        	}
+		}
+
+</script>
+</head>
+<body>
+
+	<input type="file" id="TestFileSize" onchange="inspectFileSize(event);"/>
+
+</body>
+</html>

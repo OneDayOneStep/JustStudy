@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<style type="text/css">
+  body{
+    background:#ccc;
+  }
+  .Secondtable{
+    border-spacing:0 0;
+    background:#FFF;
+    outline:#F5F5F5 1px solid;
+    box-shadow:#808080 4px 4px 6px,#99BBE9 -25px 25px 0 0;
+  }
+  .Secondtable *{
+    font-family:"宋体";
+  }
+  .Secondtable tr{
+    margin:0;
+    padding:0;
+  }
+  .Secondtable tr td input[type="text"]{
+    width:calc(100% - 10px);
+    height:22px;
+    padding:0 5px;
+    border:none;
+    background:#E3E3E3;
+    border-radius:13px;
+    font-size:13px;
+    color:#6666FF;
+  }
+  .Secondtable tr td input[type="text"]:focus{
+    background:#FFF;
+    outline:#66cccc 2px solid;
+  }
+  .Secondtable tr td input[type="checkbox"]{
+    
+  }
+  .Secondtable tr td select{
+    border:none;
+    height:22px;
+    width:100%;
+    background:#E3E3E3;
+    font-size:13px;
+    border-left:#66cccc 10px solid;
+    color:#6666CC;
+  }
+  .Secondtable tr td select option{
+    background:#FFF;
+    padding:5px 10px;
+  }
+  .Secondtable tr:nth-child(2n) td{
+    border-top-color:#66cccc;
+  }
+  .Secondtable tr:nth-child(2n+1) td{
+    border-top-color:#99BBE9;
+  }
+  .Secondtable tr td{
+    font-size:13px;
+    border-right:#e3e3e3 1px dashed;
+    border-top:#CCC 1px solid;
+    padding:0 8px 0 5px;
+    height:33px;
+    background:#FFF;
+    color:#404040;
+    white-space:nowrap;
+    cursor:default;
+    width:60px;
+  }
+  .Secondtable tr td:last-child{
+    border-right:none;
+  }
+  .Secondtable .SecondtableTh td{
+    text-align:center;
+    height:40px;
+    border-top-width:3px;
+    color:#505050 !important;
+    font-weight:600;
+    font-size:13px;
+    border-right-color:#C5C5C5;
+  }
+  .Secondtable tr.SecondtableTh+tr td{
+    border-top-width:3px;
+  }
+  .SecondtableCon{
+    position:relative;
+    overflow:visible;
+    height:400px;
+    width:500px;
+  }
+  .SecondtableCon>div{
+    position:absolute;
+    top:0;left:0;
+  }
+  .SecondtableParAll{
+    z-index:0;
+    height:100%;
+    width:100%;
+    overflow:auto;
+  }
+  .SecondtableParTopLeft{
+    z-index:3;
+    overflow:hidden;
+  }
+  .SecondtableParLeft{
+    z-index:2;
+    height:100%;
+    overflow:hidden;
+  }
+  .SecondtableParTop{
+    z-index:1;
+    width:100%;
+    overflow:hidden;
+  }
+  .SecondtableParLeft>div{
+    overflow-x:hidden;
+    overflow-y:scroll;
+  }
+  .SecondtableParTop>div{
+    overflow-y:hidden;
+    overflow-x:scroll;
+  }
+  .SecondtableParTopLeft .Secondtable,.SecondtableParTop .Secondtable,.SecondtableParLeft .Secondtable{
+    box-shadow:none;-moz-box-shadow:none;-webkit-box-shadow:none;-o-box-shadow:none;
+  }
+</style>
+<script type="text/javascript" src="jquery-3.1.1.min.js"></script>
+<script type="text/javascript" src="FixedTable.js"></script>
+</head>
+<body>
+<table class="Secondtable">
+    <tr class="SecondtableTh">
+      <td style="width:100px;" rowspan="2">数据数据</td><td style="width:100px;" rowspan="2">数据数据</td><td>数据数</td><td colspan="2">数据数</td>
+      <td>数据数</td><td>数据数</td><td>数据数</td><td>数据数</td><td>数据数</td><td>数据数</td>
+    </tr>
+    <tr class="SecondtableTh">
+      <td>数据数</td><td>数据数</td><td>数据数</td><td>数据数</td><td>数据数</td><td>数据数</td><td>数据数</td><td>数据数</td><td>数据数</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td><input type="text" /></td><td><select><option>1</option><option>1</option><option>1</option><option>1</option><option>1</option></select></input></td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td><input type="checkbox" /></td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+    <tr>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+      <td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td><td>数据数据</td>
+    </tr>
+
+
+</table>
+
+<script>
+
+  var AllScroll,LeftScroll,TopScroll,NowScroll=0;
+  $(function(){
+     var HasData = $(".Secondtable tr").not(".SecondtableTh").eq(0).find("td").length;
+     if(HasData>0){
+         $(".Secondtable").wrap("<div class='SecondtableCon'></div>");
+         $(".SecondtableTh>td").each(function(){
+            $(this).css("width",$(this).width()+"px");
+         })
+         $(".Secondtable").css("width",$(".Secondtable").width());
+         var Secondtable = $(".SecondtableCon .Secondtable").clone(true);
+            $(".SecondtableCon").append(Secondtable);
+         var Secondtable = $(".SecondtableCon .Secondtable").clone(true);
+            $(".SecondtableCon").append(Secondtable);
+         $(".Secondtable").eq(0).wrap("<div class='SecondtableParAll'></div>");
+         $(".Secondtable").eq(1).wrap("<div class='SecondtableParTopLeft'></div>");
+         $(".Secondtable").eq(2).wrap("<div class='SecondtableParTop'></div>");
+         $(".Secondtable").eq(3).wrap("<div class='SecondtableParLeft'></div>");
+         var SecondtableParLeft = $(".SecondtableParLeft .Secondtable");
+         SecondtableParLeft.wrap("<div style='height:100%;width:"+(SecondtableParLeft.width()+20)+"px;'></div>");
+         var SecondtableParTop = $(".SecondtableParTop .Secondtable");
+         SecondtableParTop.wrap("<div style='height:"+(SecondtableParTop.height()+20)+"px"+";width:100%;'></div>");
+         var LeftSize = 3;
+         var LeftWidth = 0;
+         var LeftSizeNow = 1;
+         $(".SecondtableParAll .Secondtable tr").not(".SecondtableTh").eq(0).find("td").each(function(){
+                LeftWidth += $(this).width()+14;
+                if(LeftSize==LeftSizeNow++){
+                  return false;
+                }
+         })//each
+         $(".SecondtableParLeft").css("width",LeftWidth+"px");//固定左侧的宽度
+         var TopWidth = 0;
+         $(".SecondtableParAll .SecondtableTh").each(function(){
+             TopWidth += $(this).height();
+         })
+         $(".SecondtableParTop").css("height",TopWidth+3+"px");//固定顶部的宽度
+         $(".SecondtableParTopLeft").css({"height":TopWidth+3+"px","width":LeftWidth+"px"});//固定左上角宽高
+     }//if(HasData>0)
+     AllScroll = document.getElementsByClassName("SecondtableParAll")[0];
+     LeftScroll = document.getElementsByClassName("SecondtableParLeft")[0].getElementsByTagName("div")[0];
+     TopScroll = document.getElementsByClassName("SecondtableParTop")[0].getElementsByTagName("div")[0];
+     AllScroll.addEventListener("mousemove",function(){NowScroll=0;});
+     LeftScroll.addEventListener("mousemove",function(){NowScroll=1;});
+     TopScroll.addEventListener("mousemove",function(){NowScroll=2;});
+     AllScroll.addEventListener("scroll",function(){SyncScrollAll(this);});
+     LeftScroll.addEventListener("scroll",function(){SyncScrollY(this);});
+     TopScroll.addEventListener("scroll",function(){SyncScrollX(this);});
+  })
+  function SyncScrollAll(syncAll){
+    if(NowScroll==0){
+      LeftScroll.scrollTop = syncAll.scrollTop;
+      TopScroll.scrollLeft = syncAll.scrollLeft;
+    }
+  }
+  function SyncScrollY(syncY){
+    if(NowScroll==1){
+      AllScroll.scrollTop = syncY.scrollTop;
+    }
+  }
+  function SyncScrollX(syncX){
+    if(NowScroll==2){
+      AllScroll.scrollLeft = syncX.scrollLeft;
+    }
+  }
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Diy Table</title>
+    <style type="text/css">
+
+        #DiyTable{
+            padding:15px 0 0 15px;float:left;font-family:"宋体";
+        }
+        #BeforeCreate{
+            padding:10px 0 10px 10px;background:#F1F1F1;border:#DDD 1px solid;
+        }
+        #BeforeCreate input{
+            margin-right:10px;
+        }
+        #DiyTable #S_CreateHelp{
+            border-right:#DDD 1px solid;
+            border-bottom:#DDD 1px solid;
+            user-select:none;-moz-user-select:none;
+            cursor:pointer;
+        }
+        #S_CreateHelp .S_CreateHelp{
+            background:url("CreateHelp.png");
+            background-repeat:no-repeat;
+            width:32px;height:32px;
+            margin:9px;
+        }
+        #CreateHelp{
+            position:absolute;top:0;left:51px;
+            min-width:100px;min-height:50px;
+            font-size:13px;background:#FFF;
+            white-space:nowrap;text-align:left;
+            padding:10px 10px 5px 10px;overflow:hidden;
+            box-shadow:1px 1px 3px #999;-moz-box-shadow:1px 1px 3px #999;
+            -webkit-box-shadow:1px 1px 3px #A0A0A0;
+            display:none;cursor:default;z-index:10;
+        }
+        #CreateHelp div{
+            line-height:25px;margin-bottom:5px;color:#444;font-family:"宋体";
+        }
+        #CreateHelp div span{
+            color:#444;
+        }
+        #CreateTBox{
+            position:relative;
+        }
+        #CreateTBox table{
+            border-collapse:collapse;background:#FFF;margin:0 0 10px;
+            box-shadow:1px 1px 6px #777;-moz-box-shadow:1px 1px 6px #777;
+            -webkit-box-shadow:1px 1px 6px #777;-ms-box-shadow:1px 1px 6px #777;
+        }
+        #CreateTBox table tr td{
+            padding:4px 8px;border:#DDD 1px solid;width:130px;
+            text-align:center;position:relative;
+        }
+        #CreateTBox table tr td select,#CreateTBox table tr td input{
+            width:130px;box-sizing:border-box;height:26px;margin:4px 0;
+        }
+        #DiyTable input[type="text"]{
+            text-indent:3px;
+        }
+        .RemoveOption{
+            position:absolute;top:7px;right:3px;
+            height:20px;width:20px;
+            background:url("RemoveOption.png");
+            background-repeat:no-repeat;
+            cursor:pointer;
+        }
+        #CreateTBox #addCol,#CreateTBox #addRow,#CreateTBox #SaveTable{
+            cursor:pointer;width:50px;padding:0;
+            font-family:"微软雅黑";color:#3d9bf9;font-size:42px;
+        }
+        #SaveTable div{
+            background:url("SaveT.png");
+            background-repeat:no-repeat;
+            width:32px;height:32px;
+            margin:9px;
+        }
+        #CreateTBox .Tools:hover{
+            background:#F9F9F9;
+        }
+        #addRow div{
+            height:50px;line-height:44px;
+        }
+        #addCol div{
+            height:42px;line-height:39px;overflow:hidden;
+        }
+        #CreateTBox .RemoveBox{
+            height:43px;padding:0;width:43px;border:none;
+            background:none;background:transparent;
+        }
+        .NotEach .RemoveCol{
+            width:130px;
+        }
+        .NotEach .RemoveBox{
+            padding:0 8px;
+        }
+        #CreateTBox .NotEach .RemoveBoxx{
+            padding:0 30px !important;
+            border-left:transparent 1px solid;
+            border-right:transparent 1px solid;
+        }
+        .RemoveBox:nth-last-of-type(2){
+            border-right-color:#DDD !important;
+        }
+        .RemoveCol,.RemoveRow{
+            height:20px;width:20px;display:inline-block;
+            cursor:pointer;background:url("RemoveOption.png");
+            opacity:0;transition:opacity .5s;
+            background-repeat:no-repeat;
+            background-position:center center;
+        }
+        .RemoveBox:hover .RemoveCol,.RemoveBox:hover .RemoveRow{
+            opacity:1;
+        }
+        #Merge div{
+            background:url("Merge.png");
+            background-repeat:no-repeat;
+            width:32px;height:32px;margin:9px;
+        }
+        .Merge{
+            position:absolute;height:16px;width:16px;cursor:pointer;z-index:8;
+            display:none;opacity:0;transition:opacity .5s;
+        }
+        .DiyBoxx:hover .Merge{
+            opacity:1;
+        }
+        .DiyBox .MergeMask{
+            width:auto;height:auto;cursor:default;
+            top:0;left:0;right:0;bottom:0;opacity:1;
+            background:rgba(255,255,255,.6);z-index:3;
+        }
+        .DiyBoxx{
+            padding:27px 30px !important;
+        }
+        .MergeTop{
+            background:url("MergeS.png") 0 0;
+            top:4px;left:50%;margin-left:-8px;
+        }
+        .MergeRight{
+            background:url("MergeS.png") -16px 0;
+            top:50%;margin-top:-8px;right:4px;
+        }
+        .MergeBottom{
+            background:url("MergeS.png") -32px 0;
+            bottom:4px;left:50%;margin-left:-8px;
+        }
+        .MergeLeft{
+            background:url("MergeS.png") -48px 0;
+            left:4px;top:50%;margin-top:-8px;
+        }
+        #CreateTBox #Merge{
+            border-right:#DDD 1px solid;
+            border-left:#DDD 1px solid;
+            cursor:pointer;
+        }
+    </style>
+    <script type="text/javascript" src="../jquery-3.1.1.min.js"></script>
+</head>
+<body style="margin:0">
+
+<div id="Div"></div>
+
+<script type="text/javascript">
+    $(function(){
+        DiyTable($("#Div"),function(result){
+            console.log(result);
+        });
+    })
+
+    //DiyTable( 提供一个初始化容器 , 生成后右下角保存按钮的事件 )
+    //在保存方法里使用传入任意参数名 , 然后在方法里直接通过参数名获取表格数组结构
+    function DiyTable(Box,SaveFn){
+
+        //添加参数栏
+        Box.append('<div id="DiyTable"><div id="BeforeCreate">' +
+            '<input type="text" style="width:100px;" placeholder="行" id="Rows" />' +
+            '<input type="text" style="width:100px;" placeholder="列" id="Cols" />' +
+            '<input type="button" id="CreateTable" value="创建表格结构" /></div>' +
+            '<div id="CreateTBox"></div></div>');
+
+        //可以自定义的选项
+        var Options = "<select class='TDtype'>" +
+            "<option value='Empty'></option>" +
+            "<option value='DltText'>文本标题</option>" +
+            "<option value='DltPrint'>文本输入</option>" +
+            "<option value='intPrint'>整数输入</option>" +
+            "<option value='NumPrint'>数值输入</option>" +
+            "<option value='Date'>日期选择</option>" +
+            "<option value='Select'>下拉选择</option>" +
+            "</select>";
+
+        var Merge = '<div class="Merge MergeMask"></div><div class="Merge MergeTop"></div><div class="Merge MergeRight"></div><div class="Merge MergeBottom"></div><div class="Merge MergeLeft"></div>';
+
+        //创建基础表格
+        $("#CreateTable").click(function(){
+            var Cols = $("#Cols").val();
+            var Rows = $("#Rows").val();
+            if(Rows == "" || Rows == 0){
+                alert("请输入行数");return;
+            }
+            if(Cols == "" || Cols == 0){
+                alert("请输入列数");return;
+            }
+            if(Cols > 499){
+                alert("列数过多");return;
+            }
+            if(Cols > 50){
+                if(!confirm("大于50列  确定创建")){return}
+            }
+            if($("#CreateTBox table").length>0){
+                if(!confirm("已有表格存在  是否覆盖创建")){return}
+            }
+            Rows++;
+            var CreateTable = "",Row = "",TopRow = "";
+
+            //常见问题内容
+            var CreateHelp = "<div><span>选项为空：</span>不能做任何操作的空格子</div>" +
+                "<div><span>文本标题：</span>无法修改的标题</div>" +
+                "<div><span>文本输入：</span>可以输入任何文本</div>" +
+                "<div><span>整数输入：</span>只能输入整数  不包括小数</div>" +
+                "<div><span>数值输入：</span>只能输入数字  包括小数</div>" +
+                "<div><span>日期选择：</span>带日期选择器</div>" +
+                "<div><span>下拉选择：</span>生成下拉选项</div>" +
+                "<div><span>删除行列：</span>每行左边/每列顶部  可以操作删除整行/整列</div>" +
+                "<div><span>合并模式：</span>右上角图标进入/退出合并模式" +
+                "<br />　　　　　合并模式下可以自由跨行或跨列" +
+                "<br />　　　　　完成后再次点击右上角图标退出即可</div>";
+
+            for(var i = 0;i < Cols; i++){
+                Row += "<td class='DiyBox'>"+Merge+""+Options+"</td>";
+                TopRow += "<td class='RemoveBox'><div class='RemoveCol'></div></td>";
+            }
+            for(var i = 0;i < Rows; i++){
+                if(i == 0){
+                    CreateTable += "<tr class='NotEach'><td class='RemoveBox Tools' id='S_CreateHelp'><div class='S_CreateHelp'></div><div id='CreateHelp'>"+CreateHelp+"</div>" +
+                        "</td>"+TopRow+"<td class='RemoveBox Tools' id='Merge'><div></div></td></tr>";
+                }else{
+                    CreateTable += "<tr><td class='RemoveBox'><div class='RemoveRow'></div></td>"+Row+"</tr>";
+                }
+            }
+            CreateTable += "<tr class='NotEach'><td class='RemoveBox Tools' style='border-bottom:#DDD 1px solid'></td><td colspan='"+ Cols +"' id='addRow' class='Tools'><div>+</div></td><td class='Tools' id='SaveTable'><div></div></td></tr>";
+            $("#CreateTBox").empty().append("<table>"+CreateTable+"</table>");
+            $("#CreateTBox table tr:eq(1)").append("<td rowspan='"+ (parseInt(Rows) - 1) +"' class='Tools' id='addCol'><div>+</div></td>");
+
+            //常见问题
+            $("#S_CreateHelp").click(function(){
+                if($("#CreateHelp").css("display") == "none"){
+                    $("#CreateHelp").show(250);
+                }else{
+                    $("#CreateHelp").hide();
+                }
+            })
+
+            //进入合并模式
+            $("#Merge").click(function(){
+                if($("#CreateTBox .DiyBoxx").length == 0){
+                    if(confirm("进入合并模式")){
+                        $(".DiyBox").addClass("DiyBoxx");
+                        $(".NotEach .RemoveBox").not(".Tools").addClass("RemoveBoxx");
+                        $(".Merge").show();
+                    }
+                }else{
+                    if(confirm("退出合并模式")){
+                        $(".DiyBoxx").removeClass("DiyBoxx");
+                        $(".RemoveBoxx").removeClass("RemoveBoxx");
+                        $(".Merge").hide();
+                    }
+                }
+            })
+
+            //添加多一列
+            $("#addCol").off("click").click(function(){
+                var index = 0;
+                $("#CreateTBox tr").not($("#CreateTBox tr:last-child")).each(function(){
+                    if(index == 0){
+                        index++;
+                        $("<td class='RemoveBox'><div class='RemoveCol'></div></td>").insertBefore($(this).children("td:last-child"));
+                    }else if(index == 1){
+                        index++;
+                        $("<td class='DiyBox'>"+Merge+""+Options+"</td>").insertBefore($("#addCol"));
+                    }else{
+                        $(this).append($("<td class='DiyBox'>"+Merge+""+Options+"</td>"));
+                    }
+                })
+                $("#addRow").attr("colspan",parseInt($("#addRow").attr("colspan")) + 1);
+            })
+
+            //添加多一行
+            $("#addRow").off("click").click(function(){
+                var Cols = $("#CreateTBox table tr:first-child td").length - 2;
+                var NewRow = "";
+                for(var i = 0;i < Cols;i++){
+                    NewRow += "<td class='DiyBox'>"+Merge+""+Options+"</td>";
+                }
+                $("<tr><td class='RemoveBox'><div class='RemoveRow'></div></td>"+NewRow+"</tr>").insertBefore($(this).closest("tr"));
+                $("#addCol").attr("rowspan",parseInt($("#addCol").attr("rowspan")) + 1);
+            })
+
+            //右下角保存按钮
+            $("#SaveTable").click(function(){
+                if(SaveFn!=undefined){
+                    SaveFn(SaveDiyTable());
+                }
+            })
+
+        })//CreateTable
+
+        //每个表格选项变更后
+        $("#CreateTBox").on("change",".TDtype",function(){
+            $(this).siblings(".DltText,.SelectList").remove();
+            if($(this).val() == "DltText"){
+                $(this).parent().append("<input type='text' class='DltText' />");
+            }else if($(this).val() == "Select"){
+                $(this).parent().append("<div class='SelectList'>" +
+                    "<div style='position:relative'><input type='text' class='Options' />" +
+                    "<div class='RemoveOption'></div></div>" +
+                    "<input type='button' value='加一项' class='addOption' />" +
+                    "</div>");
+            }
+        })
+
+        //添加一个Select Option
+        $("#CreateTBox").on("click",".addOption",function(){
+            $("<div style='position:relative'><input type='text' class='Options' />" +
+                "<div class='RemoveOption'></div></div>").insertBefore($(this));
+        })
+
+        //删除一个Select Option
+        $("#CreateTBox").on("click",".RemoveOption",function(){
+            if($(this).closest("td").find(".RemoveOption").length==1){
+                alert("至少需要一个选项");return;
+            }
+            $(this).parent().remove();
+        })
+
+        //删除整列表格
+        $("#CreateTBox").on("click",".RemoveCol",function(){
+            if($("#addRow").attr("colspan") == 1){
+                alert("至少需要一列");return;
+            }
+            if(confirm("确认删除该列")){
+                var OneWidth = $(".RemoveBox").eq(0).outerWidth();
+                var Delect_Left = $(this).parent().position().left;
+                var Skip = 0;
+                $("#CreateTBox table tr").not(".NotEach").each(function(){
+                    if(Skip != 0){Skip--;return true};
+                    var EachTDLeft = 0;
+                    $(this).find("td").not("#addCol,.RemoveBox").each(function(){
+                        var gThisLeft = $(this).position().left;
+                        if(gThisLeft == Delect_Left){
+                            var isOneTD = $(this).attr("colspan") == undefined ? 1 : parseInt($(this).attr("colspan"));
+                            if(isOneTD == 1){
+                                $(this).addClass("ReadyRemoveRow");
+                            }else{
+                                $(this).addClass("ReadyRow_");
+                            }
+                            Skip = $(this).attr("rowspan") == undefined ? 1 : parseInt($(this).attr("rowspan"));
+                            return false;
+                        }
+                        if(EachTDLeft != 0){
+                            if(gThisLeft != EachTDLeft + OneWidth){
+                                $(this).prev().addClass("ReadyRow_");
+                                Skip = $(this).prev().attr("rowspan") == undefined ? 0 : parseInt($(this).prev().attr("rowspan")) - 1;
+                                return false;
+                            }
+                        }
+                        if($(this).closest("tr").find(".DiyBox").index($(this)) == $(this).closest("tr").find(".DiyBox").length - 1){
+                            var isOneCol = $(this).attr("colspan") == undefined ? 1 : parseInt($(this).attr("colspan"));
+                            if(isOneCol == 1){
+                                $(this).addClass("ReadyRemoveRow");
+                            }else{
+                                $(this).addClass("ReadyRow_");
+                            }
+                        }
+                        EachTDLeft = gThisLeft;
+                    })
+                })
+                $("#CreateTBox .ReadyRemoveRow").remove();
+                $("#CreateTBox .ReadyRow_").each(function(){
+                    $(this).attr("colspan", parseInt($(this).attr("colspan")) - 1).removeClass("ReadyRow_");
+                })
+                $("#addRow").attr("colspan", parseInt($("#addRow").attr("colspan")) - 1);
+                $(this).parent().remove();
+            }
+        })
+
+        //删除整行表格
+        $("#CreateTBox").on("click",".RemoveRow",function(){
+            if($("#CreateTBox table tr").length <= 3){
+                alert("至少需要一行");return;
+            }
+            if(confirm("确认删除该行")){
+                var gThisTr = $(this).closest("tr");
+                if(gThisTr.find("#addCol").length > 0){
+                    $("#addCol").insertAfter($("#CreateTBox table tr:eq(2) td:last-child"));
+                }
+                var Inherit = [],Lack = [],Next_Left = 0;
+                var OneWidth = $(".RemoveBox").eq(0).outerWidth();
+                gThisTr.find("td").each(function(){
+                    var Vertical_Left = $(this).position().left;
+                    var ThisW = $(this).outerWidth();
+                    if(Vertical_Left != Next_Left){
+                        var BeforeLackL = Next_Left;
+                        while(BeforeLackL != Vertical_Left){
+                            Lack.push(BeforeLackL);
+                            BeforeLackL += OneWidth;
+                        }
+                    }
+                    Next_Left = Vertical_Left + ThisW;
+                    if(gThisTr.find(".DiyBox").index($(this)) == gThisTr.find(".DiyBox").length - 1){
+                        var addColLeft = $("#addCol").position().left;
+                        if(Next_Left < addColLeft){
+                            var FindMoreLeft = Next_Left;
+                            while(FindMoreLeft != addColLeft){
+                                Lack.push(FindMoreLeft);
+                                FindMoreLeft += OneWidth;
+                            }
+                        }
+                    }
+                    var InheritRow = parseInt($(this).attr("rowspan"));
+                    if(InheritRow > 1){
+                        Inherit.push(Vertical_Left);
+                        Inherit.push(InheritRow - 1);
+                    }
+                })
+                if(Lack.length > 0){
+                    var PrevTr = $(this).closest("tr");
+                    while(Lack.length != 0){
+                        PrevTr = PrevTr.prev();
+                        PrevTr.find("td").each(function(){
+                            var Find_Left =  $(this).position().left;
+                            for(var i = 0;i < Lack.length;i++){
+                                if(Find_Left == Lack[i]){
+                                    $(this).attr("rowspan", parseInt($(this).attr("rowspan")) - 1);
+                                    var LackCols = $(this).attr("colspan") == undefined ? 1 : parseInt($(this).attr("colspan"));
+                                    Lack.splice(i, LackCols);
+                                    break;
+                                }
+                            }
+                        })
+                    }
+                }
+                if(Inherit.length > 0){
+                    var InheritTr = $(this).closest("tr").next();
+                    if(InheritTr.find(".DiyBox ").length == 0){
+                        $(this).closest("tr").find("td").each(function(){
+                            $(this).attr("rowspan", parseInt($(this).attr("rowspan")) - 1);
+                        })
+                    }else{
+                        var DiyBoxxS = $(".DiyBoxx").length;
+                        var DiyBoxClass = "DiyBox";
+                        if(DiyBoxxS > 0){
+                            DiyBoxClass += " DiyBoxx";
+                        }
+                        InheritTr.find("td").not("#addCol").each(function(){
+                            $(this).addClass("gLeftSize").attr("data-left", $(this).position().left);
+                        })
+                        InheritTr.find("td").not("#addCol").each(function(){
+                            for(var i = 0;i < Inherit.length;i += 2){
+                                if($(this).attr("data-left") > Inherit[i]){
+                                    $("<td class='"+ DiyBoxClass +"' rowspan='"+Inherit[i + 1]+"'>"+ Merge +""+ Options +"</td>").insertBefore($(this));
+                                    Inherit.splice(i, 2);
+                                }
+                            }
+                            if(InheritTr.find(".DiyBox").index($(this)) == InheritTr.find(".DiyBox").length - 1){
+                                for(var i = 0;i < Inherit.length;i += 2){
+                                    if($(this).attr("data-left") < Inherit[i]){
+                                        $("<td class='"+ DiyBoxClass +"' rowspan='"+Inherit[i + 1]+"'>"+ Merge +""+ Options +"</td>").insertAfter($(this));
+                                        Inherit.splice(i, 2);
+                                    }
+                                }
+                            }
+                            $(this).removeClass("gLeftSize").removeAttr("data-left");
+                        })
+                        if(DiyBoxxS > 0){
+                            InheritTr.find(".Merge").show();
+                        }
+                    }
+                }
+                gThisTr.remove();
+                $("#addCol").attr("rowspan",$("#addCol").attr("rowspan") - 1);
+            }
+        })
+
+        //向上合并
+        $("#CreateTBox").on("click",".MergeTop",function() {
+            var MergeSize = prompt("合并的格数");
+            if(MergeSize == null || MergeSize == ""){return};
+            MergeSize = parseInt(MergeSize);
+            if(isNaN(MergeSize) || MergeSize == 0){
+                alert("请输入大于0的整数");return;
+            }
+            var ClosestTr = $(this).closest("tr");
+            var ClosestTD = $(this).closest("td");
+            var Vertical_Left =  ClosestTD.position().left;
+            var MergeCol = ClosestTD.attr("colspan") == undefined ? 1 : parseInt(ClosestTD.attr("colspan"));
+            var MergeRow = 0,TRow = ClosestTD.attr("rowspan") == undefined ? 1 : parseInt(ClosestTD.attr("rowspan"));
+            MergeRow += parseInt(TRow);
+            var PrevMerge = ClosestTr.prevAll().not(".NotEach");
+            if(PrevMerge.length < MergeSize || PrevMerge.length == 0){
+                alert("超出可合并的格数");return;
+            }
+            var RemoveMerge = [],PrevMergeTD = null;
+            for(var i = 0;i < PrevMerge.length;i++){
+                var PrevTr = PrevMerge.eq(i);
+                PrevTr.find("td").each(function(){
+                    if($(this).position().left > Vertical_Left){
+                        return false;
+                    }else if($(this).position().left == Vertical_Left){
+                        PrevMergeTD = $(this);
+                    }
+                })
+                if(PrevMergeTD == null){
+                    continue;
+                }else{
+                    var NextMergeTDCol = PrevMergeTD.attr("colspan") == undefined ? 1 : parseInt(PrevMergeTD.attr("colspan"));
+                    if(NextMergeTDCol == MergeCol){
+                        RemoveMerge.push(PrevMergeTD);
+                        TRow = PrevMergeTD.attr("rowspan") == undefined ? 1 : parseInt(PrevMergeTD.attr("rowspan"));
+                        MergeRow += parseInt(TRow);
+                        if(RemoveMerge.length == MergeSize){
+                            break;
+                        }
+                    }else{
+                        alert("合并表格存在与选择格不同跨列数或重合的格子");return;
+                    }
+                }
+            }//for
+            if(RemoveMerge.length == MergeSize){
+                var SaveHtml = ClosestTD.html();
+                ClosestTD.remove();
+                RemoveMerge.pop();
+                RemoveMerge.forEach(function(Event){
+                    Event.remove();
+                })
+                PrevMergeTD.attr("rowspan", MergeRow).html(SaveHtml);
+            }else{
+                alert("超出可合并的格数");
+            }
+        })
+
+        //向下合并
+        $("#CreateTBox").on("click",".MergeBottom",function() {
+            var MergeSize = prompt("合并的格数");
+            if(MergeSize == null || MergeSize == ""){return};
+            MergeSize = parseInt(MergeSize);
+            if(isNaN(MergeSize) || MergeSize == 0){
+                alert("请输入大于0的整数");return;
+            }
+            var ClosestTr = $(this).closest("tr");
+            var ClosestTD = $(this).closest("td");
+            var Vertical_Left =  ClosestTD.position().left;
+            var MergeCol = ClosestTD.attr("colspan") == undefined ? 1 : parseInt(ClosestTD.attr("colspan"));
+            var MergeRow = 0,TRow = ClosestTD.attr("rowspan") == undefined ? 1 : parseInt(ClosestTD.attr("rowspan"));
+            MergeRow += parseInt(TRow);
+            var NextMerge = ClosestTr.nextAll().not(".NotEach");
+            if(NextMerge.length < MergeSize || NextMerge.length == 0){
+                alert("超出可合并的格数");return;
+            }
+            var RemoveMerge = [],NextMergeTD = null;
+            var i = MergeSize;
+            for(;i > 0;i--){
+                if(NextMerge.length == 0){
+                    alert("超出可合并的格数");return;
+                }
+                NextMerge = NextMerge.eq(TRow - 1);
+                NextMerge.find("td").each(function(){
+                    if($(this).position().left > Vertical_Left){
+                        return false;
+                    }else if($(this).position().left == Vertical_Left){
+                        NextMergeTD = $(this);
+                    }
+                })
+                if(NextMergeTD == null){
+                    alert("合并表格存在与选择格不同跨列数或重合的格子");return;
+                }
+                var NextMergeTDCol = NextMergeTD.attr("colspan") == undefined ? 1 : parseInt(NextMergeTD.attr("colspan"));
+                if(NextMergeTDCol == MergeCol){
+                    RemoveMerge.push(NextMergeTD);
+                    TRow = NextMergeTD.attr("rowspan") == undefined ? 1 : parseInt(NextMergeTD.attr("rowspan"));
+                    MergeRow += parseInt(TRow);
+                    NextMerge = NextMerge.nextAll().not(".NotEach");
+                }else{
+                    alert("合并表格存在与选择格不同跨列数或重合的格子");return;
+                }
+            }//for
+            if(RemoveMerge.length == MergeSize){
+                RemoveMerge.forEach(function(Event){
+                    Event.remove();
+                })
+                ClosestTD.attr("rowspan", MergeRow);
+            }
+        })
+
+        //向左合并
+        $("#CreateTBox").on("click",".MergeLeft",function(){
+            var MergeSize = prompt("合并的格数");
+            if(MergeSize == null || MergeSize == ""){return};
+            MergeSize = parseInt(MergeSize);
+            if(isNaN(MergeSize) || MergeSize == 0){
+                alert("请输入大于0的整数");return;
+            }
+            var ClosestTr = $(this).closest("tr");
+            var ClosestTD = $(this).closest("td");
+            var MaxLength = ClosestTr.find("td:lt("+ClosestTD.index()+")").length - 1;
+            if(MergeSize > MaxLength){
+                alert("超出可合并的格数");return;
+            }
+            var Col = ClosestTD.attr("colspan") == undefined ? 1 : parseInt(ClosestTD.attr("colspan"));
+            Col = parseInt(Col);
+            var RemoveMerge = [],IndexTD = ClosestTD;
+            for(var i = 0;i < MergeSize;i++){
+                IndexTD = IndexTD.prev();
+                RemoveMerge.push(IndexTD);
+            }
+            var Row = ClosestTD.attr("rowspan");
+            if(Row == undefined){Row = 1};
+            var MergeOK = true;
+            for(var i = 0;i < RemoveMerge.length;i++){
+                var TRow = RemoveMerge[i].attr("rowspan") == undefined ? 1 : parseInt(RemoveMerge[i].attr("rowspan"));
+                if(TRow != Row){
+                    alert("合并表格存在与选择格不同跨行数或重合的格子");
+                    MergeOK = false;break;
+                }
+                if(RemoveMerge[i].attr("colspan") != undefined && RemoveMerge[i].attr("colspan") != "1"){
+                    MergeSize += parseInt(RemoveMerge[i].attr("colspan")) - 1;
+                }
+            }
+            if(MergeOK){
+                RemoveMerge.forEach(function(Event){
+                    Event.remove();
+                })
+                ClosestTD.attr("colspan", MergeSize + Col);
+            }
+        })
+
+        //向右合并
+        $("#CreateTBox").on("click",".MergeRight",function(){
+            var MergeSize = prompt("合并的格数");
+            if(MergeSize == null || MergeSize == ""){return};
+            MergeSize = parseInt(MergeSize);
+            if(isNaN(MergeSize) || MergeSize == 0){
+                alert("请输入大于0的整数");return;
+            }
+            var ClosestTr = $(this).closest("tr");
+            var ClosestTD = $(this).closest("td");
+            var MaxLength = ClosestTr.find("td:gt("+ClosestTD.index()+")").not("#addCol").length;
+            if(MergeSize > MaxLength){
+                alert("超出可合并的格数");return;
+            }
+            var Col = ClosestTD.attr("colspan") == undefined ? 1 : parseInt(ClosestTD.attr("colspan"));
+            Col = parseInt(Col);
+            var RemoveMerge = ClosestTr.find("td:gt("+ClosestTD.index()+"):lt("+MergeSize+")");
+            var Row = ClosestTD.attr("rowspan");
+            if(Row == undefined){Row = 1};
+            var MergeOK = true;
+            RemoveMerge.each(function(){
+                var TRow = $(this).attr("rowspan") == undefined ? 1 : parseInt($(this).attr("rowspan"));
+                if(TRow != Row){
+                    alert("合并表格存在与选择格不同跨行数或重合的格子");
+                    MergeOK = false;return false;
+                }
+                if($(this).attr("colspan") != undefined && $(this).attr("colspan") != "1"){
+                    MergeSize += parseInt($(this).attr("colspan")) - 1;
+                }
+            })
+            if(MergeOK){
+                RemoveMerge.remove();
+                ClosestTD.attr("colspan", MergeSize + Col);
+            }
+        })
+
+    }//DiyTable
+
+    //提取表格结构
+    function SaveDiyTable(){
+        var SaveTable = [];
+        $("#CreateTBox table tr").not(".NotEach").each(function(){
+            var Rows = $(this).index() - 1;
+            SaveTable[Rows] = [];
+            $(this).children("td").not(".RemoveBox,#addCol").each(function(){
+                var Cols = $(this).index() - 1;
+                SaveTable[Rows][Cols] = [];
+                var TDCols = $(this).attr("colspan") == undefined ? 1 : parseInt($(this).attr("colspan"));
+                var TDRows = $(this).attr("rowspan") == undefined ? 1 : parseInt($(this).attr("rowspan"));
+                SaveTable[Rows][Cols][0] = TDCols;
+                SaveTable[Rows][Cols][1] = TDRows;
+                var TDtype = $(this).children(".TDtype").val();
+                SaveTable[Rows][Cols][2] = TDtype;
+                if(TDtype == "DltText"){
+                    var Format = $(this).children(".DltText").val().replace(/</g,"&lt;");
+                    SaveTable[Rows][Cols][3] = Format.replace(/>/g,"&gt;");
+                }else if(TDtype == "Select"){
+                    var Options = [];
+                    $(this).find(".Options").each(function(){
+                        var Format = $(this).val().replace(/</g,"&lt;");
+                        Options[$(this).parent().index()] = Format.replace(/>/g,"&gt;");
+                    })
+                    SaveTable[Rows][Cols][3] = Options;
+                }else if(TDtype == "Empty"){
+                    SaveTable[Rows][Cols][2] = "DltText";
+                    SaveTable[Rows][Cols][3] = "";
+                }
+            })
+        })
+        return SaveTable;
+        SaveTable = null;
+    }//SaveDiyTable
+
+</script>
+</body>
+</html>

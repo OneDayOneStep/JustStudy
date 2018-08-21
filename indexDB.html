@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Index</title>
+<style type="text/css">
+    #DBShow>div{
+        width:300px;margin-top:2px;overflow:hidden;font-size:13px;
+    }
+    #DBShow>div>div{
+        width:98px;float:left;
+        background:#DDD;border-left:#FFF 2px solid;
+        text-indent:10px;padding:5px 0;
+    }
+    .RemoveDB{
+        cursor:pointer;
+    }
+</style>
+<script type="text/javascript">
+
+</script>
+</head>
+<body>
+
+<div style="margin-bottom:10px">
+    <input type="text" id="addName" />
+    <input type="text" id="addSex" />
+    <input type="button" id="addToDB" value="Add New">
+</div>
+
+<div style="margin-bottom:10px">
+    <input type="text" id="SearchName" />
+    <input type="button" id="SearchBut" value="查询" />
+</div>
+
+<div id="DBShow"></div>
+
+<script type="text/javascript">
+
+    var DB,
+        openRequest,
+        lastCursor,
+        arrayKey = [];
+
+    var indexDB = window.indexedDB || window.webkitIndexedDB || window.mozIndexedDB || window.msIndexedDb;//浏览器兼容
+    var DBName = "testDB"; //数据库名称
+    var tableName = "testTable"; //表名
+
+    function init(){
+
+        openRequest = indexDB.open(DBName,1); //打开 DBNme 数据库, 版本为：1
+
+        openRequest.onupgradeneeded = function (ev) {  //onupgradeneeded 监听数据版本更新时
+            var thisDB = ev.target.result;
+            // console.log(thisDB.version);
+            if(!thisDB.objectStoreNames.contains(tableName)){ //判断 该表 是否存在
+                //创建表
+                var objectStore = thisDB.createObjectStore(tableName, {keyPath: "id", autoIncrement: true});
+                //创建字段
+                objectStore.createIndex("name", "name", {unique: false});
+                objectStore.createIndex("sex", "sex", {unique: false});
+            }
+        };
+
+        openRequest.onsuccess = function (ev) {
+            DB = ev.target.result;
+            if(DB.objectStoreNames.contains(tableName)){ //判断表是否存在
+                var transaction = DB.transaction([tableName],"readwrite"); //得到表对象,事务为：读写
+                transaction.oncomplete = function (ev2) {
+                    //事务完成
+                }
+                transaction.onerror = function (ev2) { //事务出错
+                    console.dir(ev2);
+                }
+                var objectStore = transaction.objectStore(tableName);//得到表里的objectStore对象
+                objectStore.openCursor().onsuccess = function (ev2) { //使用游标遍历
+                    var cursor = ev2.target.result;
+                    if(cursor){
+                        document.getElementById("DBShow").innerHTML += "<div><div>"+ cursor.value.name +"</div><div>"+ cursor.value.sex +"</div><div class='RemoveDB' data-id='"+ cursor.key +"'>删除</div></div>";
+                        cursor.continue();
+                    }else{
+                        console.log("Done with cursor");
+                    }
+                }
+
+                objectStore.openCursor().onerror = function (ev2) {
+                    console.dir(ev2);
+                }
+
+            }
+            DB.onerror = function (ev) {
+                console.dir(ev.target);
+            }
+        };
+
+
+        document.getElementById("addToDB").addEventListener("click",function (ev) {
+            var addName = document.getElementById("addName").value;
+            var addSex = document.getElementById("addSex").value;
+            var person = {
+                "name": addName,
+                "sex": addSex
+            };
+            var transaction = DB.transaction([tableName], "readwrite");
+            transaction.oncomplete = function (ev2) {
+                console.log("Complete");
+            }
+            transaction.onerror = function (ev2) {
+                console.dir(ev2);
+            }
+            var objectStore = transaction.objectStore(tableName);
+            objectStore.add(person);
+            document.getElementById("DBShow").innerHTML += "<div><div>"+ person.name +"</div><div>"+ person.sex +"</div><div class='RemoveDB'>删除</div></div>";
+        });
+
+
+        document.getElementById("DBShow").addEventListener("click",function (ev2) {
+            ev2 = ev2 || window.ev2;
+            var Event = ev2.target || ev2.srcElement;
+            if(Event.className.match(/RemoveDB/g)!=null){
+                if(confirm("是否删除该数据")){
+                    var transaction = DB.transaction([tableName], "readwrite");
+                    transaction.onerror = function (ev2) {
+                        console.dir(ev2);
+                    }
+                    var objectStore = transaction.objectStore(tableName);
+                    var DleteKey = parseInt(Event.getAttribute("data-id"));
+                    var Deleted = objectStore.delete(DleteKey);
+                    Deleted.onsuccess = function () {
+                        var DEvent = Event.parentNode;
+                        document.getElementById("DBShow").removeChild(DEvent);
+                        // alert("删除成功");
+                    }
+                }
+            }
+        })
+
+
+        document.getElementById("SearchBut").addEventListener("click",function (ev) {
+            var SearchName = document.getElementById("SearchName").value;
+            var transaction = DB.transaction([tableName], "readonly");
+            var objectStore = transaction.objectStore(tableName);
+            var BoundKeyRange = IDBKeyRange.only(SearchName);
+            objectStore.index("name").openCursor(BoundKeyRange).onsuccess = function (ev2) {
+                var cursor = ev2.target.result;
+                if(!cursor){
+                    return;
+                }
+                console.log(cursor);
+                cursor.continue();
+            }
+        })
+
+
+
+        openRequest.onerror = function (ev) { //连接数据库失败
+            console.log(ev);
+        };
+
+    }//init
+
+
+    init();
+
+
+
+
+</script>
+
+</body>
+</html>
